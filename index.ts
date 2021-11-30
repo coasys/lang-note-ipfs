@@ -1,12 +1,8 @@
-import type Address from '@perspect3vism/ad4m/Address'
-import type Agent from '@perspect3vism/ad4m/Agent'
-import type Language from '@perspect3vism/ad4m/Language'
-import type LanguageContext from '@perspect3vism/ad4m-language-context/LanguageContext'
-import type { Interaction } from '@perspect3vism/ad4m/Language'
+import type { Address, Interaction, Agent, Language, LanguageContext } from "@perspect3vism/ad4m";
 import Adapter from './adapter'
 import { NoteExpressionUI } from './noteExpressionUI'
 
-function interactions(a: Agent, expression: Address): Interaction[] {
+function interactions(expression: Address): Interaction[] {
     return []
 }
 
