@@ -1,25 +1,11 @@
-import type Address from '@perspect3vism/ad4m/Address'
-import type Expression from '@perspect3vism/ad4m/Expression'
-import type { ExpressionAdapter, PublicSharing } from '@perspect3vism/ad4m/Language'
-import type LanguageContext from '@perspect3vism/ad4m-language-context/LanguageContext'
-import type { IPFSNode } from '@perspect3vism/ad4m-language-context/LanguageContext'
+import type { Address, Expression, ExpressionAdapter, PublicSharing, LanguageContext } from "@perspect3vism/ad4m";
 import { IpfsPutAdapter } from './putAdapter'
-
-const _appendBuffer = (buffer1, buffer2) => {
-    const tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
-    tmp.set(new Uint8Array(buffer1), 0);
-    tmp.set(new Uint8Array(buffer2), buffer1.byteLength);
-    return tmp.buffer;
-};
-
-const uint8ArrayConcat = (chunks) => {
-    return chunks.reduce(_appendBuffer)
-}
-
-
+import { toString as uint8ArrayToString } from 'uint8arrays/to-string'
+import { concat as uint8ArrayConcat } from 'uint8arrays/concat';
+import type { IPFS } from "ipfs-core-types";
 
 export default class Adapter implements ExpressionAdapter {
-    #IPFS: IPFSNode
+    #IPFS: IPFS
 
     putAdapter: PublicSharing
 
@@ -28,7 +14,7 @@ export default class Adapter implements ExpressionAdapter {
         this.putAdapter = new IpfsPutAdapter(context)
     }
 
-    async get(address: Address): Promise<void | Expression> {
+    async get(address: Address): Promise<Expression> {
         const cid = address.toString()
 
         const chunks = []
@@ -37,9 +23,10 @@ export default class Adapter implements ExpressionAdapter {
             chunks.push(chunk)
         }
 
-        const fileString = uint8ArrayConcat(chunks).toString();
+        const fileString = uint8ArrayToString(uint8ArrayConcat(chunks));
         const fileJson = JSON.parse(fileString)
+        //pin file to help persistence
+        await this.#IPFS.pin.add(cid);
         return fileJson
-
     }
 }

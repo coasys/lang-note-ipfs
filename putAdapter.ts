@@ -1,12 +1,9 @@
-import type Address from '@perspect3vism/ad4m/Address'
-import type AgentService from '@perspect3vism/ad4m/AgentService'
-import type { PublicSharing } from '@perspect3vism/ad4m/Language'
-import type LanguageContext from '@perspect3vism/ad4m-language-context/LanguageContext'
-import type { IPFSNode } from '@perspect3vism/ad4m-language-context/LanguageContext'
+import type { Address, AgentService, PublicSharing, LanguageContext } from "@perspect3vism/ad4m";
+import type { IPFS } from "ipfs-core-types";
 
 export class IpfsPutAdapter implements PublicSharing {
     #agent: AgentService
-    #IPFS: IPFSNode
+    #IPFS: IPFS
 
     constructor(context: LanguageContext) {
         this.#agent = context.agent
