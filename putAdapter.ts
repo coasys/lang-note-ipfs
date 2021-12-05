@@ -14,6 +14,13 @@ export class IpfsPutAdapter implements PublicSharing {
     }
 
     async createPublic(note: object): Promise<Address> {
+        try {
+            //@ts-ignore
+            note = JSON.parse(note)
+        }catch(e){
+
+        }
+
         const agent = this.#agent
         const expression = agent.createSignedExpression(note)
         const content = JSON.stringify(expression)

@@ -3,11 +3,13 @@
 <script lang="ts">
     import type Expression from "@perspect3vism/ad4m/Expression";
     export let expression: Expression
+    let string
+    $: if(expression && expression.data) string = JSON.parse(expression.data)
 </script>
 
 <div class="container">
     {#if expression}
-        <input disabled bind:value={expression.data}>
+        <input disabled bind:value={string}>
     {/if}
 </div>
 
