@@ -1,6 +1,6 @@
 {
   "name": "note-ipfs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "An AD4M Language for simple text notes build on IPFS",
   "main": "index.js",
   "scripts": {
