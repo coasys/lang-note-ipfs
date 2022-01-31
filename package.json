@@ -1,6 +1,6 @@
 {
   "name": "note-ipfs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An AD4M Language for simple text notes build on IPFS",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@perspect3vism/ad4m": "0.1.21",
+    "@perspect3vism/ad4m": "0.1.25",
     "@rollup/plugin-commonjs": "^14.0.0",
     "@rollup/plugin-node-resolve": "^8.0.0",
     "@rollup/plugin-typescript": "^4.0.0",

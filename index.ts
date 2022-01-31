@@ -6,6 +6,10 @@ function interactions(expression: Address): Interaction[] {
     return []
 }
 
+function isImmutableExpression(expression: Address): boolean {
+    return true
+}
+
 export default function create(context: LanguageContext): Language {
     const expressionAdapter = new Adapter(context)
     const expressionUI = new NoteExpressionUI()
@@ -15,6 +19,7 @@ export default function create(context: LanguageContext): Language {
         expressionAdapter,
         expressionUI,
         interactions,
+        isImmutableExpression
     } as Language
 }
 
