@@ -1,16 +1,20 @@
-<svelte:options tag={null}/>
+<svelte:options/>
 
 <script lang="ts">
-    export let commitExpression
-    export let discard
-
     let text = ""
+    function commitExpression(e) {
+        e.target.dispatchEvent(new CustomEvent('commitExpression', { detail: { text }, composed:true }))
+    }
 
+    function discard(e) {
+        text = ""
+        e.target.dispatchEvent(new CustomEvent('discard', { composed:true }))
+    }
 </script>
 
 <div class="container">
     <input bind:value={text}>
-    <button on:click={()=>commitExpression(text)}>Commit</button>
+    <button on:click={commitExpression}>Commit</button>
     <button on:click={discard}>Discard</button>
 </div>
 
