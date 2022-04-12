@@ -1,4 +1,4 @@
-<svelte:options tag={null}/>
+<svelte:options/>
 
 <script lang="ts">
     import type Expression from "@perspect3vism/ad4m/Expression";
