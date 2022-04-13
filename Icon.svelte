@@ -1,10 +1,16 @@
 <svelte:options/>
 
 <script lang="ts">
-    import type Expression from "@perspect3vism/ad4m/Expression";
-    export let expression: Expression
+    export let expression: string;
     let string
-    $: if(expression && expression.data) string = JSON.parse(expression.data)
+    $: if(expression) {
+        const parsed = JSON.parse(expression)
+        if (parsed.data) {
+            string = JSON.parse(parsed.data)
+        } else {
+            string = parsed
+        }
+    }
 </script>
 
 <div class="container">
